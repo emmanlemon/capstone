@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.data_feedback{
+    gap: 5em;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #eee;
+    border: 2px outset;
+    border-image: linear-gradient(to right , green, gold)1;
+    margin: 5px 0;
+}
+.data_feedback p{
+    margin: 0;
+    font-size: .8em;
+}
+.deleteButton{
+    justify-items: end;
+}
+.alert{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}

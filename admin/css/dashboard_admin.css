@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0; 
+}
+body{
+    background-color: red;
+    min-height: 100vh;
+}
+.information{
+    background-image: url("https://media.istockphoto.com/vectors/modern-papercut-abstract-background-abstract-design-template-for-vector-id1301857206?k=20&m=1301857206&s=612x612&w=0&h=6xNeA0OrU4QsRH4_sqzFu0MBjZkzsGAnABfJXDPDkdA=");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }

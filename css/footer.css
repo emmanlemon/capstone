@@ -1,0 +1,49 @@
+.footer_context{
+	font-size: 1em;
+	background-image:linear-gradient(180deg, green, gold);
+}
+.text-uppercase{
+	color: white;
+	font-size: 1.3em;
+	text-shadow: 1px 1px 1px black;
+	padding: 1%;
+	letter-spacing: 2px;
+}
+.list-unstyled > li > a{
+	text-transform: uppercase;
+	text-decoration: none;
+	color: black;
+	letter-spacing: 1px;
+	padding: 1%;
+}
+.list-unstyled > li{
+	display: grid;
+	place-items: center;
+}
+.list-unstyled > li > a::after{
+	content: "";
+	display: block;
+	height: 2px;
+	width: 0;
+	background-image: linear-gradient(to right, green, gold);
+	transition: all .5s ease-in-out;
+}
+.list-unstyled > li>a:hover::after{
+	width: 100%;
+
+}
+
+/*footer*/
+.icons>*{
+	margin-right: 10px;
+}
+.footer-copyright{
+	border-top: 1px outset;
+	background-color: #fff;
+	font-size: 1.25em;
+	text-shadow: 1px 1px 1px white;
+	padding: 1%;
+}
+.row{
+	display: flex;
+  }

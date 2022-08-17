@@ -1,0 +1,67 @@
+body {
+	background-color: #538991;
+	margin-top: 150px;
+}
+.button1 {
+  background-color: #cccccc;
+  border: none;
+  border-radius: 230px;
+  color: black;
+  width: 20%;
+  height: 80px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 1;
+  transition: 0.3s;
+  display: inline-block;
+  margin: 100px 0px 0px 0px;
+  cursor: pointer;
+  font-size: 30px;
+  background-image: url("photos/admin.png");
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 250px;
+  position: relative;
+  font-family: fantasy;
+  float: left;
+  margin-left: 400px;
+}
+.button2 {
+  background-color: #cccccc;
+  border: none;
+  border-radius: 230px;
+  color: black;
+  width: 20%;
+  height: 80px;
+  text-align: center;
+  font-size: 16px;
+  opacity: 1;
+  transition: 0.3s;
+  display: inline-block;
+  margin: 100px 0px 0px 0px;
+  cursor: pointer;
+  font-size: 30px;
+  background-image: url("photos/user.png");
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 250px;
+  position: relative;
+  font-family: fantasy;
+  float: right;
+  margin-right: 400px;
+}
+
+.button1:hover , .button2:hover {
+	box-shadow: 0 22px 26px 0 rgba(0,0,0,0.24), 0 27px 60px 0 rgba(0,0,0,0.19);
+  opacity: 0.8;
+  transform: scale(1.2);
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
