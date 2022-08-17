@@ -2,10 +2,40 @@
 	session_unset();
 	session_start();
 	
-	//Unset the variables stored in session
-	unset($_SESSION['SESS_MEMBER_ID']);
-	unset($_SESSION['SESS_FIRST_NAME']);
-	unset($_SESSION['SESS_LAST_NAME']);
+  include "db_conn.php";
+
+    $result = mysqli_query($db, "SELECT * FROM posts ORDER BY post_id desc limit 1");
+    if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_array($result)) {
+    $post_id = $row["post_id"];
+    $timeuploaded = $row["timeuploaded"];
+    $thumbnail = $row["thumbnail"];
+    $fullImage = $row["fimage"];
+    $smallImage =  $row["simage"];
+    $header = $row["header"];
+    $bigheader = $row["bigheader"];
+    $short_description = $row["short_description"];
+    $description = $row["description"];
+    $post_text = $row["post_text"];
+    }
+  }
+
+  $sql = "SELECT * FROM achievement ORDER BY achievement_id desc limit 1";
+  $result = mysqli_query($db, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while ($row = mysqli_fetch_assoc($result)) {
+        $achievement_id = $row["achievement_id"];
+        $title= $row["title"];
+        $thumbnailImage = $row["thumbnail_image"];
+        $fullIimage = $row["full_image"];
+        $headerAchievement = $row["header"];
+        $shortDescriptionAchievement = $row["short_description"];
+        $content = $row["content"];
+        $postText = $row["post_text"];
+    }
+}
+
 ?>
 <!DOCTYPE html>
 	<html> 
@@ -127,6 +157,27 @@
     </div>
     </div>
 
+    <!-- Announcement , Upcoming Event , Achivements-->
+    <div class="container2"> 
+        <div class="container2_box">
+          <span class="title">Announcement</span>
+          <?php echo "<img src='admin/images/announcement/$thumbnail'>" ?>
+          <?php echo "<p>Title: $header</p>" ?>
+          <?php echo "<p>Description: $short_description </p>" ?>
+          <a href="announcements.php">See All</a>
+        </div>
+        <div class="container2_box">
+        <span class="title">Achievement</span>
+        <?php echo "<img src='admin/images/achievement/$thumbnailImage'>" ?>
+        <?php echo "<p>Title: $headerAchievement </p>" ?>
+        <?php echo "<p>Description: $shortDescriptionAchievement </p>" ?>
+        <a href="announcements.php">See All</a>
+          </div>
+          <div class="container2_box">
+          <span class="title">Upcoming Events</span>
+          </div>
+    </div>  
+
     <div class="welcome">
         <div class="welcome_content">
             <img src="https://static.wixstatic.com/media/61cf76_86daaedc1e5e4486b8312a13a0d7e793~mv2.jpg/v1/fill/w_314,h_461,al_c,lg_1,q_80,enc_auto/WelcomeA.jpg" alt="" width="100px;"
@@ -201,7 +252,34 @@
       
           
             <div class="news">
-              <p>achieved</p>
+            <span>News</span>
+              <?php 
+               $sql = "SELECT * FROM news ORDER BY news_id desc limit 4";
+               $result = mysqli_query($db, $sql);
+               if (mysqli_num_rows($result) > 0) {
+                 // output data of each row
+                 while ($row = mysqli_fetch_assoc($result)) {
+                     $news_id = $row["news_id"];
+                     $titleNews= $row["title"];
+                     $thumbnailImageNews = $row["thumbnail_image"];
+                     $fullIimage = $row["full_image"];
+                     $headerNews = $row["header"];
+                     $shortDescriptionNews = $row["short_description"];
+                     $contentNews = $row["content"];
+
+                     echo "<div class=\"data_feedback\"> 
+                     <img src='admin/images/achievement/$thumbnailImageNews'>
+                       <div>
+                         <p>Title: $titleNews</p>
+                         <p>Description: $shortDescriptionNews </p>
+                         <p>Time Uploaded: $timeuploaded </p>
+                         <a href=\"announcement_see.php?announcement_id=$post_id\">See More >></a>
+                       </div>        
+                 </div>";
+                 }
+             }
+              ?>
+              <span> See All >> </span>
             </div>       
       <!--	  <a class="slider_btn" href="AboutUs-single.html">Read More</a>-->
             
@@ -352,8 +430,26 @@
                     
                    </em></em></form>
         </div>
-    </div>
-    
+    </div>      
+
+    <span>The Developers</span>
+    <div class="developer_container"> 
+        <div class="developer_box">
+          <img src="images/profile/emman.jpg" alt="">
+          <span><i class="fa fa-user" aria-hidden="true"></i> Emmanuel Joshua A. Lemon</span>
+          <p><i class="fa fa-address-card" aria-hidden="true"></i> Rizal Avenue San Carlos City Pangasinan</p>
+          <p><i class="fa fa-calendar" aria-hidden="true"></i> November 12 2000</p>
+          <p><i class="fa fa-desktop" aria-hidden="true"></i> Full Stack Developer</p>
+          <a href="">Contact Me >> </a>
+        </div>
+        <div class="developer_box">
+        <p>hi</p>
+          </div>
+          <div class="developer_box">
+          <p>hi</p>
+          </div>
+    </div>        
+
       <div class="location">
         <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="400px" id="gmap_canvas" src="https://maps.google.com/maps?q=Speaker%20Eugenio%20Perez%20National%20Agricultural%20School%20roxas%20san%20carlos%20&t=k&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
         </iframe><a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:400px;width:100%;}

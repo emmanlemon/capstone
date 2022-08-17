@@ -32,11 +32,12 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
                 ?>
 			</head>
 			<body>
-            <div class="information" style="display: grid; place-items:center;">
+            <div class="information" style="display: grid; place-items:center; margin-top: 100px;">
         <h1 style="display:inline-block;">Welcome Our Admin!!</h1>
         <p></p>
-
     </div>
+    <p>Guest Page</p>
+    <iframe src="../index.php" height="500" width="100%" title="Iframe Example"></iframe>
     <script>
     (function (global) {
 

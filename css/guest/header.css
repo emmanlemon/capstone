@@ -458,3 +458,96 @@ img {vertical-align: middle; width: 100%;}
 	padding: 5px 0;
 	margin: 5px 0;
 }
+.developer_container{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+	background-image: linear-gradient(to bottom, gold ,green);
+}
+.developer_box{
+	margin-bottom: 5px;
+	padding: 20px;
+	margin: 20px;
+	box-shadow: 1px 1px 1px black;
+	background-color: rgba(255, 255, 255, 0.633);
+}
+.developer_box>*{
+	padding:0;
+	margin: 0;
+}
+.developer_box img {
+	border-radius: 50px;
+	margin-bottom: 5px;
+	width: 100%;
+	height: 300px;
+}
+.container2{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+	background-image: linear-gradient(to bottom, gold ,green);
+}
+.container2_box{
+	display: grid;
+	place-items: center;
+	margin-bottom: 5px;
+	padding: 20px;
+	margin: 20px;
+	background-color: white;
+	border: .5px outset gray;
+	border-radius: 5px;
+}
+.container2_box>*{
+	padding:0;
+	margin: 0;
+}
+.container2_box .title{
+	font-size: 1.3em;
+	border-bottom: 3px outset;
+	border-image: linear-gradient(to right, green ,gold) 1;
+	margin: 10px;
+}
+.container2_box img {
+	border-radius: 10px;
+	margin-bottom: 5px;
+	width: 100%;
+	height: 300px;
+}
+.container2_box a{
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-decoration: none;
+	background-color: green;
+	box-shadow: 1px 1px 1px white, 1.5px 1.5px 1.5px black; 
+	color:white;
+	padding:10px 20px;
+}
+.data_feedback{
+	border-bottom:2px outset;
+	border-image: linear-gradient(to right, green ,gold) 1;
+    display:flex;
+    align-items:center;
+    margin-bottom: 20px;
+    padding: 10px;
+    gap: 1em;
+    transition: 1s ease-in-out;
+}
+.data_feedback p{
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0;
+}
+.data_feedback img{
+   width: 200px;
+   height: 200px;
+}
+.data_feedback img:hover{
+    transform: scale(1.1);
+}
+.news span{
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 1.8em;
+	border-bottom: 3px outset;
+	border-image: linear-gradient(to right, green, gold) 1;
+	margin-bottom: 20px;
+}

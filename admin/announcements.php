@@ -21,7 +21,6 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
 			      <title>Admin Announcement Page</title>
             <link rel="stylesheet" type="text/css" href="css/announcement.css">
             <link rel="stylesheet" type="text/css" href="css/zoom_image.css">
-            
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -30,6 +29,9 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
 			</head>
+            <?php
+                    include "molecule/header.php";
+                ?>
 			<body>
             <div class="header" style="display: grid; place-items:center;">
         <h1 style="display:inline-block; text-transform:capitalize;">Welcome Our <?php echo $_SESSION['username'] ?></h1>
@@ -123,7 +125,7 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
             
             <!--End -->
 
-            <?php include "announcement_show.php"; ?>
+            <?php include "show_data/announcement_show.php"; ?>
     </div>
     <?php include "molecule/footer.php"; ?>
 
@@ -147,7 +149,7 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
     }
     }
     
-    // create references to the modal...
+        // create references to the modal...
 var modal = document.getElementById('myModal');
 var modalImage = document.getElementById('modalImage');
 var close = document.getElementsByClassName('close');
@@ -159,7 +161,7 @@ btn.onclick = function() {
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+close.onclick = function() {
   modal.style.display = "none";
 }
 
@@ -179,13 +181,6 @@ for (var i = 0; i < images.length; i++) {
     modalImg.src = this.src;
     captionText.innerHTML = this.alt;
   }
-}
-
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modalImage.style.display = "none";
 }
 
 window.onclick = function(event) {

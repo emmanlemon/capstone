@@ -6,21 +6,23 @@ session_start();
   	//$image3 = $_FILES['fimage']['name'];
   	//$image4 = $_FILES['simage']['name'];
 
-  	$achievement_id = mysqli_real_escape_string($db, $_SESSION['id']);
+  	$uploader_id = mysqli_real_escape_string($db, $_SESSION['id']);
   	$title = mysqli_real_escape_string($db, $_POST['title']);
   	$header = mysqli_real_escape_string($db, $_POST['header']);
     $short_description = mysqli_real_escape_string($db, $_POST['shortDescription']);
   	$content = mysqli_real_escape_string($db, $_POST['content']);
+	$post_text = mysqli_real_escape_string($db, $_POST['postText']);
 
-	$location="../images/achievement/";
+
+	$location="../images/news/";
 	$file1=$_FILES['thumbnail']['name'];
 	$file_tmp1 = $_FILES['thumbnail']['tmp_name'];
 	$file2=$_FILES['fimage']['name'];
 	$file_tmp2=$_FILES['fimage']['tmp_name'];
 
 
-	$query="INSERT INTO `achievement` (title, thumbnail_image, full_image, header, short_description, content, post_text , timestamp , uploader_id) 
-    VALUES ('$title', '$file1','$file2', \"$header\", \"$short_description\", \"$content\", \"$post_text\", CURRENT_TIMESTAMP() ,'$achievement_id ')";
+	$query="INSERT INTO `news` (title, thumbnail_image, full_image, header, short_description, content, timestamp , uploader_id) 
+    VALUES ('$title', '$file1','$file2', \"$header\", \"$short_description\", \"$content\", CURRENT_TIMESTAMP() ,'$uploader_id ')";
 	$fire=mysqli_query($conn,$query);
 	if($fire)
 	{

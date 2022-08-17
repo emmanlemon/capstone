@@ -50,22 +50,22 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
     <span class="close" id=>&times;</span>
     <div class="create_announcement">
             <div class="title"><h3>Creating Achievements</h3></div>
-                <form runat="server" action="adding_data/upload_announcement.php" method="POST" enctype="multipart/form-data">
+                <form runat="server" action="adding_data/upload_achievement.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Title:</label>
                         <input type="text" class="form-control" name="title" required aria-describedby="emailHelp" placeholder="Enter Title">
+                    </div>
+                    <div class="form-group">
+                    <label for="header">Header:</label>
+                        <input type="text" class="form-control" name="header" required placeholder="Enter Description">
                     </div>
                     <div class="form-group">
                     <label for="shortDescription">Short Description:</label>
                         <input type="text" class="form-control" name="shortDescription" required placeholder="Enter Short Description">
                     </div>
                     <div class="form-group">
-                    <label for="fullDescriptionn">Full Description:</label>
-                        <input type="text" class="form-control" name="fullDescription" required placeholder="Enter Description">
-                    </div>
-                    <div class="form-group">
-                        <label for="header">Header:</label>
-                        <input type="text" class="form-control" name="header" required placeholder="Enter Description">
+                        <label for="content">Content Type</label>
+                        <input type="text" class="form-control" name="content" required placeholder="Enter Description">
                     </div>
                     <div class="form-group">
                         <label for="postText">Post Text:</label>
@@ -86,15 +86,6 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
                     <label class="form-label" for="fimage">Full Image:</label>
                         <input accept="image/*" type='file' name="fimage" id="fimage_id" required name="fimage"/>
                         <img class="myImages" id="img2" src="#" alt="No Image yet" style="width: 100%; height: 20vh; border-radius: 5px; object-fit: cover;">    
-                    <div id="modalImage" class="modal">
-                    <span class="close">&times;</span>
-                    <img class="modal-content" id="img01">
-                    </div>
-                    </div>
-                    <div class="form-group">
-                    <label class="form-label" for="simage">Small Image:</label>
-                        <input accept="image/*" type='file' name="simage" id="simage_id" required name="simage"/>
-                        <img class="myImages" id="img3" src="#" alt="No Image yet" style="width: 100%; height: 20vh; border-radius: 5px; object-fit: cover;">    
                     <div id="modalImage" class="modal">
                     <span class="close">&times;</span>
                     <img class="modal-content" id="img01">
@@ -125,7 +116,7 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
             
             <!--End -->
 
-            <?php include "announcement_show.php"; ?>
+            <?php include "show_data/achievement_show.php"; ?>
     </div>
     <?php include "molecule/footer.php"; ?>
 
@@ -140,12 +131,6 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
     const [file] = fimage_id.files
     if (file) {
         img2.src = URL.createObjectURL(file)
-    }
-    }
-    simage_id.onchange = (event) => {
-    const [file] = simage_id.files
-    if (file) {
-        img3.src = URL.createObjectURL(file)
     }
     }
     
