@@ -1,3 +1,28 @@
+<?php
+include "db_conn.php";
+$id = $_GET['post_id'];
+
+$sql = "SELECT * FROM posts WHERE post_id = $id";
+        $result = mysqli_query($db, $sql);
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+while ($row = mysqli_fetch_assoc($result)) {
+    $post_id = $row["post_id"];
+    $timeuploaded = $row["timeuploaded"];
+    $thumbnail = $row["thumbnail"];
+    $fullImage = $row["fimage"];
+    $smallImage =  $row["simage"];
+    $header = $row["header"];
+    $bigheader = $row["bigheader"];
+    $short_description = $row["short_description"];
+    $description = $row["description"];
+    $post_text = $row["post_text"];
+    $date = date_create($timeuploaded);
+    $dateLayout = date_format($date,"h:i:s d/m/Y");
+
+}
+  }
+  ?>
 <!DOCTYPE html>
 		<html>
 			<head>
@@ -23,45 +48,24 @@
 
             <div class="container_post">
     <div class="header">
-  <h2>Announcement</h2>
 </div>
     <div class="row">
   <div class="leftcolumn">
     <div class="card">
-    <?php 
-        include "db_conn.php";
-
-         //Selecting the all post in achievement
-         $sql = "SELECT * FROM posts ORDER BY post_id desc";
-        $result = mysqli_query($db, $sql);
-        if (mysqli_num_rows($result) > 0) {
-          // output data of each row
-          while ($row = mysqli_fetch_assoc($result)) {
-            $post_id = $row["post_id"];
-            $timeuploaded = $row["timeuploaded"];
-            $thumbnail = $row["thumbnail"];
-            $fullImage = $row["fimage"];
-            $smallImage =  $row["simage"];
-            $header = $row["header"];
-            $bigheader = $row["bigheader"];
-            $short_description = $row["short_description"];
-            $description = $row["description"];
-            $post_text = $row["post_text"];
-
-              echo "
-              <img src='admin/images/announcement/$thumbnail'>
-              <h2>$header</h2>
-              <p>$short_description</p>
-              <a href=\"announcement_show.php?post_id=$post_id\">See more >></a>
+    <?php
+        echo "
+              <img src='admin/images/announcement/$thumbnail'> 
+              <h2>$bigheader</h2>
+              <h3>$header</h3>
+              <p>Time Uploaded: $dateLayout</p>
+              <p>Description: $description</p>
+              <p>($post_text)</p>
+              <br>
+              <p>Upcoming Features: Comment Section</p>
               ";
-          }
-        }
-
-        ?>
+?>
     </div>
   </div>
-
-
   <div class="rightcolumn">
     <div class="card">
       <h2>Upcoming Event</h2>
@@ -82,7 +86,7 @@
               $contentEvents = $row["content"];
               $dateEvent = $row["date"];
               $date = date_create($dateEvent);
-              $dateLayout = date_format($date,"Y/m/d");
+              $dateLayout = date_format($date,"d/m/Y");
 
               echo "
               <img src='admin/images/events/$thumbnailImageEvents'>
@@ -125,15 +129,13 @@
                      $shortDescriptionNews = $row["short_description"];
                      $timeuploaded =  $row["timestamp"];
                      $contentNews = $row["content"];
-                     $date = date_create($timeuploaded);
-                     $dateLayout = date_format($date,"h:i:s d/m/Y");
 
                      echo "<div class=\"data_feedback\"> 
                      <img src='admin/images/news/$thumbnailImageNews'>
                        <div>
                          <p>Title: $titleNews</p>
                          <p>Description: $shortDescriptionNews </p>
-                         <p>Time Uploaded: $dateLayout </p>
+                         <p>Time Uploaded: $timeuploaded </p>
                        </div>        
                  </div>";
                  }

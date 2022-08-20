@@ -4,6 +4,7 @@
 	
   include "db_conn.php";
 
+    //Selecting the recent post in announcement
     $result = mysqli_query($db, "SELECT * FROM posts ORDER BY post_id desc limit 1");
     if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result)) {
@@ -20,6 +21,7 @@
     }
   }
 
+  //Selecting the recent post in achievement
   $sql = "SELECT * FROM achievement ORDER BY achievement_id desc limit 1";
   $result = mysqli_query($db, $sql);
   if (mysqli_num_rows($result) > 0) {
@@ -34,6 +36,25 @@
         $content = $row["content"];
         $postText = $row["post_text"];
     }
+}
+
+//Selecting the recent post in upcoming events
+$sql = "SELECT * FROM upcoming_events ORDER BY event_id desc limit 1";
+$result = mysqli_query($db, $sql);
+if (mysqli_num_rows($result) > 0) {
+  // output data of each row
+  while ($row = mysqli_fetch_assoc($result)) {
+      $event_id = $row["event_id"];
+      $titleEvents = $row["title"];
+      $thumbnailImageEvents = $row["thumbnail_image"];
+      $fullIImageEvents = $row["full_image"];
+      $headerEvents = $row["header"];
+      $shortDescriptionEvents = $row["short_description"];
+      $contentEvents = $row["content"];
+      $dateEvent = $row["date"];
+      $date = date_create($dateEvent);
+      $dateLayout = date_format($date,"d/m/Y");
+  }
 }
 
 ?>
@@ -52,7 +73,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
 			<title>Speaker Eugenio Perez National Agricultural School</title>
 			<?php
-                include "loadscreen.php";
+        include "loadscreen.php";
 				include "disablerightclick.php";
 			?>
 
@@ -60,46 +81,58 @@
 
 
 		<body oncontextmenu="return false">
-		<nav>
-        <input id="nav-toggle" type="checkbox">
-        <div class="logo"><img src="images/Images/sepnas_logo.png" alt="" style="width:100px; height:100px;"><p style="padding: 5px; text-shadow: 1px 1px 1px black;">Speaker Eugenio Perez National Agricultural School</p></div>
-        <ul class="links">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="announcements.php">Announcement</a></li>
-            <li>
-                <div class="dropdown show">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                      Academics
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color:green; z-index: 10;">
-                      <a class="dropdown-item" href="#">Program Offerings</a>
-                      <a class="dropdown-item" href="#">SEPNAS Senior High School</a>
-                      <a class="dropdown-item" href="#">Basic Education Program</a>
+    <nav>
+            <input id="nav-toggle" type="checkbox">
+            <div class="logo"><img src="favicon.png" alt="" style="width:100px; height:100px;"><p style="padding: 5px; text-shadow: 1px 1px 1px black;">Speaker Eugenio Perez National Agricultural School</p></div>
+
+            <ul class="links">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="announcements.php">Announcement</a></li>
+                <li>
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                       Bulletin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color:green; z-index: 10;">
+                        <a class="dropdown-item" href="news.php">News</a>
+                        <a class="dropdown-item" href="achievement.php">Achievements</a>
+                        <a class="dropdown-item" href="upcoming_events.php">Upcoming Events</a>
+                        </div>
                     </div>
-                  </div>
-            </li>
-            <li>
-              <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                About Us
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color:green; z-index: 10;">
-                <a class="dropdown-item" href="aboutus/history/history.html">History</a>
-                <a class="dropdown-item" href="#">Sepnas Vission Mission</a>
-                <a class="dropdown-item" href="#">Privacy Policy</a>
-                <a class="dropdown-item" href="gallery.php">Campus Gallery</a>
-              </div>
-            </div></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="contactus/contactus.html">Contact</a></li>
-        <a href="login.php"><span class="fa fa-globe" id="login" style="font-size:20px;"></span></a>
-        </ul>
-        <label for="nav-toggle" class="icon-burger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </label>
-    </nav>
+                </li>
+                <li>
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                        Academics
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color:green; z-index: 10;">
+                        <a class="dropdown-item" href="#">Program Offerings</a>
+                        <a class="dropdown-item" href="#">SEPNAS Senior High School</a>
+                        <a class="dropdown-item" href="#">Basic Education Program</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                    About Us
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color:green; z-index: 10;">
+                    <a class="dropdown-item" href="history.php">History</a>
+                    <a class="dropdown-item" href="#">Sepnas Vission Mission</a>
+                    <a class="dropdown-item" href="#">Privacy Policy</a>
+                    <a class="dropdown-item" href="gallery.php">Campus Gallery</a>
+                </div>
+                </div></li>
+                <li><a href="contactus.php">Contact Us</a></li>
+                <a href="login.php"><span class="fa fa-globe" id="login" style="font-size:20px;"></span></a>
+            </ul>
+            <label for="nav-toggle" class="icon-burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </label>
+        </nav>
     <div class="blank" style="height: 80px;" id="home">
         <p></p>
     </div>
@@ -171,11 +204,16 @@
         <?php echo "<img src='admin/images/achievement/$thumbnailImage'>" ?>
         <?php echo "<p>Title: $headerAchievement </p>" ?>
         <?php echo "<p>Description: $shortDescriptionAchievement </p>" ?>
-        <a href="announcements.php">See All</a>
+        <a href="achievement.php">See All</a>
           </div>
           <div class="container2_box">
           <span class="title">Upcoming Events</span>
-          </div>
+        <?php echo "<img src='admin/images/events/$thumbnailImageEvents'>" ?>
+        <?php echo "<p>Title: $headerEvents </p>" ?>
+        <?php echo "<p>Description: $shortDescriptionEvents </p>" ?>
+        <?php echo "<p>Date: $dateLayout </p>" ?>
+        <a href="upcoming_events.php">See All</a>    
+      </div>
     </div>  
 
     <div class="welcome">
@@ -254,7 +292,7 @@
             <div class="news">
             <span>News</span>
               <?php 
-               $sql = "SELECT * FROM news ORDER BY news_id desc limit 4";
+               $sql = "SELECT * FROM news ORDER BY news_id desc limit 3";
                $result = mysqli_query($db, $sql);
                if (mysqli_num_rows($result) > 0) {
                  // output data of each row
@@ -266,20 +304,23 @@
                      $headerNews = $row["header"];
                      $shortDescriptionNews = $row["short_description"];
                      $contentNews = $row["content"];
+                     $timeuploadedNews = $row["timestamp"];
+                     $date = date_create($timeuploadedNews);
+                     $dateLayoutNews = date_format($date,"h:i:s d/m/Y");
 
                      echo "<div class=\"data_feedback\"> 
-                     <img src='admin/images/achievement/$thumbnailImageNews'>
+                     <img src='admin/images/news/$thumbnailImageNews'>
                        <div>
                          <p>Title: $titleNews</p>
                          <p>Description: $shortDescriptionNews </p>
-                         <p>Time Uploaded: $timeuploaded </p>
-                         <a href=\"announcement_see.php?announcement_id=$post_id\">See More >></a>
+                         <p>Time Uploaded: $dateLayoutNews </p>
+                         <a href=\"announcement.php\">See More >></a>
                        </div>        
                  </div>";
                  }
              }
               ?>
-              <span> See All >> </span>
+              <!-- <span> See All >> </span> -->
             </div>       
       <!--	  <a class="slider_btn" href="AboutUs-single.html">Read More</a>-->
             
@@ -374,7 +415,7 @@
                         </div>
                     </div>
                 </div>
-  <a href=""> <i class="fa fa-search"></i>&nbsp;See Complete Calendar</a>
+  <a href="calendar.php"> <i class="fa fa-search"></i>&nbsp;See Complete Calendar</a>
     
                 <div class="month-list"></div>
             </div>
@@ -383,7 +424,7 @@
                   <div class="row">
                          <div class="col-lg-12 col-md-12"> 
                            <div class="title_area">
-                           <form action="contactus.php" method="POST">
+                           <form action="contactUsSubmit.php" method="POST">
                      <h2 class="title">Contact us</h2>
                      <span></span>
                              <h5>We are eager to discuss and answer any questions you have. Enter your details and we'll get back to you shortly.</h5>
@@ -440,7 +481,7 @@
           <p><i class="fa fa-address-card" aria-hidden="true"></i> Rizal Avenue San Carlos City Pangasinan</p>
           <p><i class="fa fa-calendar" aria-hidden="true"></i> November 12 2000</p>
           <p><i class="fa fa-desktop" aria-hidden="true"></i> Full Stack Developer</p>
-          <a href="">Contact Me >> </a>
+          <a href="https://www.facebook.com/joshua.lemon.961/" target="_blank">Contact Me >> </a>
         </div>
         <div class="developer_box">
         <p>hi</p>

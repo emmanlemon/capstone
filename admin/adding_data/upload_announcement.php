@@ -33,7 +33,7 @@ session_start();
 		move_uploaded_file($file_tmp2, $location.$file2);
 		move_uploaded_file($file_tmp3, $location.$file3);
         
-        echo "hello";
+		header("Location: ../announcement.php?error=Achievement Post Added Successfully");
         exit();
 	} 
     else {

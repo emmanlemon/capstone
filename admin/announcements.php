@@ -122,6 +122,11 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
                <?php if (isset($_GET['success'])) { ?>
         <div class="alert alert-success"><?php echo $_GET['success'];  echo '<script>alert("Announcement has been successfully deleted;")</script>'?></div>
           	<?php } ?>
+
+                 <!--Success Added Feedback -->
+                 <?php if (isset($_GET['success'])) { ?>
+        <div class="alert alert-success"><?php echo $_GET['success'];  echo '<script>alert("Announcement has been successfully deleted;")</script>'?></div>
+          	<?php } ?>
             
             <!--End -->
 

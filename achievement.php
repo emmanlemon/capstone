@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-		<html>
-			<head>
-            <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
-			      <title>Announcement Page</title>
-            <link rel="stylesheet" type="text/css" href="css/announcement.css">
-            <link rel="stylesheet" type="text/css" href="css/zoom_image.css">
-            <link rel="stylesheet" type="text/css" href="css/postLayout.css">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <?php
-                    include "molecule/header.php";
-                    include "loadscreen.php";
-                ?>
-            </head>
-			<body>
-            <img src="images/sepnas.jpg" alt="" style="width: 100%; height: 350px; margin-top: 1.5%;">
-
-            <div class="container_post">
+	<html> 
+		<head>
+		<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/postLayout.css">
+    <link rel="stylesheet" type="text/css" href="css/zoom_image.css">
+    <link rel="stylesheet" type="text/css" href="css/js/calendar.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+			<title>Speaker Eugenio Perez National Agricultural School</title>
+			<?php
+                include "molecule/header.php";
+                include "loadscreen.php";
+				        include "disablerightclick.php";
+			?>
+		</head>
+        <body>
+        <img src="images/sepnas.jpg" alt="" style="width: 100%; height: 350px; margin-top: 1.5%;">
+    <div class="container_post">
     <div class="header">
-  <h2>Announcement</h2>
+  <h2>Achievements</h2>
 </div>
     <div class="row">
   <div class="leftcolumn">
@@ -32,27 +32,26 @@
         include "db_conn.php";
 
          //Selecting the all post in achievement
-         $sql = "SELECT * FROM posts ORDER BY post_id desc";
+        $sql = "SELECT * FROM achievement ORDER BY achievement_id desc";
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
           // output data of each row
           while ($row = mysqli_fetch_assoc($result)) {
-            $post_id = $row["post_id"];
-            $timeuploaded = $row["timeuploaded"];
-            $thumbnail = $row["thumbnail"];
-            $fullImage = $row["fimage"];
-            $smallImage =  $row["simage"];
-            $header = $row["header"];
-            $bigheader = $row["bigheader"];
-            $short_description = $row["short_description"];
-            $description = $row["description"];
-            $post_text = $row["post_text"];
+              $achievement_id = $row["achievement_id"];
+              $title= $row["title"];
+              $thumbnailImage = $row["thumbnail_image"];
+              $fullIimage = $row["full_image"];
+              $headerAchievement = $row["header"];
+              $shortDescriptionAchievement = $row["short_description"];
+              $content = $row["content"];
+              $postText = $row["post_text"];
 
               echo "
-              <img src='admin/images/announcement/$thumbnail'>
-              <h2>$header</h2>
-              <p>$short_description</p>
-              <a href=\"announcement_show.php?post_id=$post_id\">See more >></a>
+              <img src='admin/images/achievement/$thumbnailImage'>
+              <h2>$title</h2>
+              <p>$headerAchievement</p>
+              <p>$shortDescriptionAchievement</p>
+              <a href=\"#\">See More >></a>
               ";
           }
         }
@@ -125,15 +124,13 @@
                      $shortDescriptionNews = $row["short_description"];
                      $timeuploaded =  $row["timestamp"];
                      $contentNews = $row["content"];
-                     $date = date_create($timeuploaded);
-                     $dateLayout = date_format($date,"h:i:s d/m/Y");
 
                      echo "<div class=\"data_feedback\"> 
                      <img src='admin/images/news/$thumbnailImageNews'>
                        <div>
                          <p>Title: $titleNews</p>
                          <p>Description: $shortDescriptionNews </p>
-                         <p>Time Uploaded: $dateLayout </p>
+                         <p>Time Uploaded: $timeuploaded </p>
                        </div>        
                  </div>";
                  }
@@ -156,7 +153,7 @@
     <?php
                     include "molecule/footer.php";
                     ?>
-<script>
+    <script>
       // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -184,5 +181,5 @@ if (event.target == modal) {
 }
 
     </script>
-            </body>
-            </html>
+        </body>
+        </html>

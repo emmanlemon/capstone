@@ -18,7 +18,7 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
 		<html>
 			<head>
             <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
-			      <title>Admin Achievements Page</title>
+			      <title>Admin Upcoming Events Page</title>
             <link rel="stylesheet" type="text/css" href="css/announcement.css">
             <link rel="stylesheet" type="text/css" href="css/zoom_image.css">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,10 +35,10 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
 			<body>
             <div class="header" style="display: grid; place-items:center;">
         <h1 style="display:inline-block; text-transform:capitalize;">Welcome Our <?php echo $_SESSION['username'] ?></h1>
-        <p>Achievements Page</p>
+        <p>Upcoming Events Page</p>
     </div>
     <div class="announcement_title">
-        <span>Achievements</span>
+        <span>Upcoming Events</span>
         <span class="right"><button id="myBtn">Open Modal</button></span>
     </div>
 
@@ -49,8 +49,8 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
     <div class="modal-content">
     <span class="close" id=>&times;</span>
     <div class="create_announcement">
-            <div class="title"><h3>Creating Achievements</h3></div>
-                <form runat="server" action="adding_data/upload_achievement.php" method="POST" enctype="multipart/form-data">
+            <div class="title"><h3>Creating Upcoming Events</h3></div>
+                <form runat="server" action="adding_data/upload_upcoming_events.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Title:</label>
                         <input type="text" class="form-control" name="title" required aria-describedby="emailHelp" placeholder="Enter Title">
@@ -68,8 +68,8 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
                         <input type="text" class="form-control" name="content" required placeholder="Enter Description">
                     </div>
                     <div class="form-group">
-                        <label for="postText">Post Text:</label>
-                        <input type="text" class="form-control" name="postText" required placeholder="Enter Description">
+                        <label for="date">Date:</label>
+                        <input type="date" class="form-control" name="date" required placeholder="Enter Description">
                     </div>
 
                     <!-- Adding Image -->
@@ -109,19 +109,19 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
               <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
             </div>
             
-               <!--Success Delete Achievement -->
+               <!--Success Delete Feedback -->
                <?php if (isset($_GET['deleted'])) { ?>
-        <div class="alert alert-success"><?php echo $_GET['deleted'];?></div>
+            <div class="alert alert-success"><?php echo $_GET['deleted'];  echo '<script>alert("Event has been successfully deleted;")</script>'?></div>
           	<?php } ?>
+            
+             <!--Success Delete Feedback -->
+             <?php if (isset($_GET['success'])) { ?>
+            <div class="alert alert-success"><?php echo $_GET['success'];  echo '<script>alert("Event has been successfully added;")</script>'?></div>
+          	<?php } ?>
+            
             <!--End -->
 
-               <!--Success Added Achievement -->
-               <?php if (isset($_GET['success'])) { ?>
-        <div class="alert alert-success"><?php echo $_GET['success'];  echo '<script>alert("Announcement has been successfully deleted;")</script>'?></div>
-          	<?php } ?>
-            <!--End -->
-
-            <?php include "show_data/achievement_show.php"; ?>
+            <?php include "show_data/upcoming_events.php"; ?>
     </div>
     <?php include "molecule/footer.php"; ?>
 
