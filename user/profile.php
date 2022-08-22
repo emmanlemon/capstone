@@ -143,11 +143,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <div class="tab-content profile-tabs-content">
             <div class="tab-pane active" id="profile-overview" role="tabpanel">
                 <div class="post-editor">
-                    <textarea name="post-field" id="post-field" class="post-field" placeholder="Write Something Cool!"></textarea>
+                    <form action="adding_data/upload_post.php" method="Post">
+                    <input type="text" class="form-control" placeholder="Header Post" required name="header">
+                    <textarea name="content" id="post-field" class="post-field" placeholder="Write Something Cool!"></textarea>
                     <div class="d-flex">
                         <button class="btn btn-success px-4 py-1">Post</button>
                     </div>
+                    <input type='file'id="post_image_id" required name="post_image"/>
+                </form>
                 </div>
+                 
                 <!-- /.post-editor -->
                 <div class="stream-posts">
                     <div class="stream-post">

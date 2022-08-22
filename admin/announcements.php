@@ -118,11 +118,15 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
               <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
             </div>
             
-               <!--Success Delete Feedback -->
-               <?php if (isset($_GET['success'])) { ?>
-        <div class="alert alert-success"><?php echo $_GET['success'];  echo '<script>alert("Announcement has been successfully deleted;")</script>'?></div>
+                  <!--Success Added Announcement -->
+                  <?php if (isset($_GET['success'])) { ?>
+        <div class="alert alert-success"><?php echo $_GET['success'];  echo '<script>alert("Announcement has been successfully Added;")</script>'?></div>
           	<?php } ?>
-            
+
+             <!--Success Delete Announcement -->
+             <?php if (isset($_GET['deleted'])) { ?>
+        <div class="alert alert-success"><?php echo $_GET['deleted'];  echo '<script>alert("Announcement has been successfully deleted;")</script>'?></div>
+          	<?php } ?>
             <!--End -->
 
             <?php include "show_data/announcement_show.php"; ?>

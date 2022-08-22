@@ -13,7 +13,6 @@ if (mysqli_num_rows($result) > 0) {
         $header = $row["header"];
         $short_description = $row["short_description"];
         $content = $row["content"];
-        $postText = $row["post_text"];
         $timeuploaded = $row["timestamp"];
     
 
@@ -25,8 +24,9 @@ if (mysqli_num_rows($result) > 0) {
             <p>Description: $short_description </p>
             <p>Time Uploaded: $timeuploaded </p>
           </div>
-        <div class=\"deleteButton\">
-        </div>
+          <div class=\"deleteButton\">
+          <a href=\"delete_data/delete_achievement.php?achievement_id=$achievement_id\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>
+          </div>
 
     </div>" ;
       }

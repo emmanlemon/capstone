@@ -27,11 +27,11 @@ session_start();
 		move_uploaded_file($file_tmp1, $location.$file1);
 		move_uploaded_file($file_tmp2, $location.$file2);
         
-        echo "hello";
+		header("Location: ../achievement.php?success=Achievement Post Added Successfully");
         exit();
 	} 
     else {
-        header("Location: ../announcement.php?error=Upload is not Added Successfully");
+        header("Location: ../achievement.php?error=Achievement Post is not Added Successfully");
         exit();
     }
 

@@ -9,6 +9,59 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']))
 {
 include "../db_conn.php";
 
+//Selecting the recent post in announcement
+$result = mysqli_query($db, "SELECT * FROM posts ORDER BY post_id desc limit 1");
+if (mysqli_num_rows($result) > 0) {
+while ($row = mysqli_fetch_array($result)) {
+$post_id = $row["post_id"];
+$timeuploaded = $row["timeuploaded"];
+$thumbnail = $row["thumbnail"];
+$fullImage = $row["fimage"];
+$smallImage =  $row["simage"];
+$header = $row["header"];
+$bigheader = $row["bigheader"];
+$short_description = $row["short_description"];
+$description = $row["description"];
+$post_text = $row["post_text"];
+}
+}
+
+//Selecting the recent post in achievement
+$sql = "SELECT * FROM achievement ORDER BY achievement_id desc limit 1";
+$result = mysqli_query($db, $sql);
+if (mysqli_num_rows($result) > 0) {
+// output data of each row
+while ($row = mysqli_fetch_assoc($result)) {
+    $achievement_id = $row["achievement_id"];
+    $title= $row["title"];
+    $thumbnailImage = $row["thumbnail_image"];
+    $fullIimage = $row["full_image"];
+    $headerAchievement = $row["header"];
+    $shortDescriptionAchievement = $row["short_description"];
+    $content = $row["content"];
+    $postText = $row["post_text"];
+}
+}
+
+//Selecting the recent post in upcoming events
+$sql = "SELECT * FROM upcoming_events ORDER BY event_id desc limit 1";
+$result = mysqli_query($db, $sql);
+if (mysqli_num_rows($result) > 0) {
+// output data of each row
+while ($row = mysqli_fetch_assoc($result)) {
+  $event_id = $row["event_id"];
+  $titleEvents = $row["title"];
+  $thumbnailImageEvents = $row["thumbnail_image"];
+  $fullIImageEvents = $row["full_image"];
+  $headerEvents = $row["header"];
+  $shortDescriptionEvents = $row["short_description"];
+  $contentEvents = $row["content"];
+  $dateEvent = $row["date"];
+  $date = date_create($dateEvent);
+  $dateLayout = date_format($date,"d/m/Y");
+}
+}
+
  // Create database connection
 
   $tryid = $_SESSION['id'];
@@ -122,7 +175,7 @@ include "../db_conn.php";
 			<head>
             <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
 			      <title>Speaker Eugenio Perez National Agricultural School</title>
-            <link rel="stylesheet" type="text/css" href="css/home.css">
+            <link rel="stylesheet" type="text/css" href="css/dashboard_user.css">
             <link rel="stylesheet" type="text/css" href="css/calendar.css">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -190,6 +243,32 @@ include "../db_conn.php";
         </a>
     </div>
     </div>
+
+      <!-- Announcement , Upcoming Event , Achivements-->
+      <div class="container2"> 
+        <div class="container2_box">
+          <span class="title">Announcement</span>
+          <?php echo "<img src='../admin/images/announcement/$thumbnail'>" ?>
+          <?php echo "<p>Title: $header</p>" ?>
+          <?php echo "<p>Description: $short_description </p>" ?>
+          <a href="announcements.php">See All</a>
+        </div>
+        <div class="container2_box">
+        <span class="title">Achievement</span>
+        <?php echo "<img src='../admin/images/achievement/$thumbnailImage'>" ?>
+        <?php echo "<p>Title: $headerAchievement </p>" ?>
+        <?php echo "<p>Description: $shortDescriptionAchievement </p>" ?>
+        <a href="achievement.php">See All</a>
+          </div>
+          <div class="container2_box">
+          <span class="title">Upcoming Events</span>
+        <?php echo "<img src='../admin/images/events/$thumbnailImageEvents'>" ?>
+        <?php echo "<p>Title: $headerEvents </p>" ?>
+        <?php echo "<p>Description: $shortDescriptionEvents </p>" ?>
+        <?php echo "<p>Date: $dateLayout </p>" ?>
+        <a href="upcoming_events.php">See All</a>    
+      </div>
+    </div> 
 
     <div class="welcome">
         <div class="welcome_content">
@@ -262,7 +341,35 @@ include "../db_conn.php";
               </div>
 
             <div class="news">
-              <p>achieved</p>
+            <span>News</span>
+              <?php 
+               $sql = "SELECT * FROM news ORDER BY news_id desc limit 3";
+               $result = mysqli_query($db, $sql);
+               if (mysqli_num_rows($result) > 0) {
+                 // output data of each row
+                 while ($row = mysqli_fetch_assoc($result)) {
+                     $news_id = $row["news_id"];
+                     $titleNews= $row["title"];
+                     $thumbnailImageNews = $row["thumbnail_image"];
+                     $fullIimage = $row["full_image"];
+                     $headerNews = $row["header"];
+                     $shortDescriptionNews = $row["short_description"];
+                     $contentNews = $row["content"];
+                     $timeuploaded = $row["timestamp"];
+
+                     echo "<div class=\"data_feedback\"> 
+                     <img src='../admin/images/news/$thumbnailImageNews'>
+                       <div>
+                         <p>Title: $titleNews</p>
+                         <p>Description: $shortDescriptionNews </p>
+                         <p>Time Uploaded: $timeuploaded </p>
+                         <a href=\"announcement_see.php?announcement_id=$news_id\">See More >></a>
+                       </div>        
+                 </div>";
+                 }
+             }
+              ?>
+              <!-- <span> See All >> </span> -->       
             </div>       
       <!--	  <a class="slider_btn" href="AboutUs-single.html">Read More</a>-->
             
@@ -411,6 +518,26 @@ include "../db_conn.php";
                    </em></em></form>
         </div>
     </div>
+    
+    <!--Developers -->
+    <span>The Developers</span>
+    <div class="developer_container"> 
+        <div class="developer_box">
+          <img src="images/profile/emman.jpg" alt="">
+          <span><i class="fa fa-user" aria-hidden="true"></i> Emmanuel Joshua A. Lemon</span>
+          <p><i class="fa fa-address-card" aria-hidden="true"></i> Rizal Avenue San Carlos City Pangasinan</p>
+          <p><i class="fa fa-calendar" aria-hidden="true"></i> November 12 2000</p>
+          <p><i class="fa fa-desktop" aria-hidden="true"></i> Full Stack Developer</p>
+          <a href="https://www.facebook.com/joshua.lemon.961/" target="_blank">Contact Me >> </a>
+        </div>
+        <div class="developer_box">
+        <p>hi</p>
+          </div>
+          <div class="developer_box">
+          <p>hi</p>
+          </div>
+    </div> 
+    <!-- End -->
     
       <div class="location">
         <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="400px" id="gmap_canvas" src="https://maps.google.com/maps?q=Speaker%20Eugenio%20Perez%20National%20Agricultural%20School%20roxas%20san%20carlos%20&t=k&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
