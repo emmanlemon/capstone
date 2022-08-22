@@ -5,7 +5,7 @@ $id = $_GET['news_id'];
 $sql = "DELETE FROM news WHERE news_id='".$id."'";
 if ($conn->query($sql) === TRUE) {
 
-    header("Location: ../news.php?deleted=Achievement has been deleted successfully");
+    header("Location: ../news.php?deleted=News has been deleted successfully");
   } else {
     echo "Error deleting record: " . $conn->error;
   }

@@ -44,7 +44,7 @@
             $headerNews = $row["header"];
             $shortDescriptionNews = $row["short_description"];
             $contentNews = $row["content"];
-
+    
               echo "
               <img src='admin/images/news/$thumbnailImageNews'>
               <h2>$titleNews</h2>

@@ -18,7 +18,7 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
 		<html>
 			<head>
             <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
-			      <title>Admin Achievements Page</title>
+			      <title>Admin News Page</title>
             <link rel="stylesheet" type="text/css" href="css/announcement.css">
             <link rel="stylesheet" type="text/css" href="css/zoom_image.css">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,11 +35,11 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
 			<body>
             <div class="header" style="display: grid; place-items:center;">
         <h1 style="display:inline-block; text-transform:capitalize;">Welcome Our <?php echo $_SESSION['username'] ?></h1>
-        <p>Achievements Page</p>
+        <p>Achievement Page</p>
     </div>
     <div class="announcement_title">
-        <span>Achievements</span>
-        <span class="right"><button id="myBtn">Open Modal</button></span>
+        <span>Achievement</span>
+        <span class="right"><button id="myBtn">Add Achievement</button></span>
     </div>
 
     <!-- The Modal -->
@@ -49,7 +49,7 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
     <div class="modal-content">
     <span class="close" id=>&times;</span>
     <div class="create_announcement">
-            <div class="title"><h3>Creating Achievements</h3></div>
+            <div class="title"><h3>Creating Achievement</h3></div>
                 <form runat="server" action="adding_data/upload_achievement.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Title:</label>
@@ -66,10 +66,6 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
                     <div class="form-group">
                         <label for="content">Content Type</label>
                         <input type="text" class="form-control" name="content" required placeholder="Enter Description">
-                    </div>
-                    <div class="form-group">
-                        <label for="postText">Post Text:</label>
-                        <input type="text" class="form-control" name="postText" required placeholder="Enter Description">
                     </div>
 
                     <!-- Adding Image -->
@@ -91,9 +87,9 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
                     <img class="modal-content" id="img01">
                     </div>
                     </div>
-                    
                 </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-primary">Reset</button>
                 </form>
     </div>
     </div>
@@ -109,16 +105,16 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
               <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
             </div>
             
-               <!--Success Delete Achievement -->
-               <?php if (isset($_GET['deleted'])) { ?>
-        <div class="alert alert-success"><?php echo $_GET['deleted'];?></div>
-          	<?php } ?>
-            <!--End -->
-
-               <!--Success Added Achievement -->
+               <!--Success Added News -->
                <?php if (isset($_GET['success'])) { ?>
-        <div class="alert alert-success"><?php echo $_GET['success'];  echo '<script>alert("Announcement has been successfully deleted;")</script>'?></div>
+        <div class="alert alert-success"><?php echo $_GET['success'];  echo '<script>alert("Achievement has been successfully Added")</script>'?></div>
           	<?php } ?>
+
+             <!--Success Delete News -->
+             <?php if (isset($_GET['deleted'])) { ?>
+        <div class="alert alert-success"><?php echo $_GET['deleted'];  echo '<script>alert("Achievement has been successfully deleted")</script>'?></div>
+          	<?php } ?>
+            
             <!--End -->
 
             <?php include "show_data/achievement_show.php"; ?>
@@ -174,11 +170,11 @@ for (var i = 0; i < images.length; i++) {
 }
 
 window.onclick = function(event) {
-if (event.target == modal) {
-    modal.style.display = "none";
-    } 
-    else if (event.target == modalImage) {
+if (event.target == modalImage) {
     modalImage.style.display = "none";
+    } 
+    else if (event.target == modal) {
+    modal.style.display = "none";
     } 
 }
 

@@ -114,7 +114,6 @@ $result6 = mysqli_query($db, "SELECT * FROM admin WHERE id='$tryid'");
              <?php if (isset($_GET['deleted'])) { ?>
         <div class="alert alert-success"><?php echo $_GET['deleted'];  echo '<script>alert("News has been successfully deleted;")</script>'?></div>
           	<?php } ?>
-            
             <!--End -->
 
             <?php include "show_data/news_show.php"; ?>

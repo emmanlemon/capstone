@@ -16,14 +16,14 @@
 			<?php
                 include "molecule/header.php";
                 include "loadscreen.php";
-				        include "../disablerightclick.php";
+				include "disablerightclick.php";
 			?>
 		</head>
         <body>
         <img src="images/sepnas.jpg" alt="" style="width: 100%; height: 350px; margin-top: 1.5%;">
     <div class="container_post">
     <div class="header">
-  <h2>Announcements</h2>
+  <h2>News</h2>
 </div>
     <div class="row">
   <div class="leftcolumn">
@@ -32,27 +32,24 @@
         include "db_conn.php";
 
          //Selecting the all post in achievement
-         $sql = "SELECT * FROM posts ORDER BY post_id desc";
+        $sql = "SELECT * FROM news ORDER BY news_id desc";
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
           // output data of each row
           while ($row = mysqli_fetch_assoc($result)) {
-            $post_id = $row["post_id"];
-            $timeuploaded = $row["timeuploaded"];
-            $thumbnail = $row["thumbnail"];
-            $fullImage = $row["fimage"];
-            $smallImage =  $row["simage"];
-            $header = $row["header"];
-            $bigheader = $row["bigheader"];
-            $short_description = $row["short_description"];
-            $description = $row["description"];
-            $post_text = $row["post_text"];
-
+            $news_id = $row["news_id"];
+            $titleNews= $row["title"];
+            $thumbnailImageNews = $row["thumbnail_image"];
+            $fullIimage = $row["full_image"];
+            $headerNews = $row["header"];
+            $shortDescriptionNews = $row["short_description"];
+            $contentNews = $row["content"];
+    
               echo "
-              <img src='../admin/images/announcement/$thumbnail'>
-              <h2>$header</h2>
-              <p>$short_description</p>
-              <a href=\"announcement_show.php?post_id=$post_id\">See more >></a>
+              <img src='../admin/images/news/$thumbnailImageNews'>
+              <h2>$titleNews</h2>
+              <p>$shortDescriptionNews</p>
+              <a href=\"announcement_id=\">See More >></a>
               ";
           }
         }
@@ -82,7 +79,7 @@
               $contentEvents = $row["content"];
               $dateEvent = $row["date"];
               $date = date_create($dateEvent);
-              $dateLayout = date_format($date,"Y/m/d");
+              $dateLayout = date_format($date,"d/m/Y");
 
               echo "
               <img src='../admin/images/events/$thumbnailImageEvents'>
@@ -109,45 +106,6 @@
                 <div id="caption"></div>
               </div>
             </div>
-            <div class="card">
-              <h2>Latest News</h2>
-              <?php 
-               $sql = "SELECT * FROM news ORDER BY news_id desc limit 2";
-               $result = mysqli_query($db, $sql);
-               if (mysqli_num_rows($result) > 0) {
-                 // output data of each row
-                 while ($row = mysqli_fetch_assoc($result)) {
-                     $news_id = $row["news_id"];
-                     $titleNews= $row["title"];
-                     $thumbnailImageNews = $row["thumbnail_image"];
-                     $fullIimage = $row["full_image"];
-                     $headerNews = $row["header"];
-                     $shortDescriptionNews = $row["short_description"];
-                     $timeuploaded =  $row["timestamp"];
-                     $contentNews = $row["content"];
-
-                     echo "<div class=\"data_feedback\"> 
-                     <img src='../admin/images/news/$thumbnailImageNews'>
-                       <div>
-                         <p>Title: $titleNews</p>
-                         <p>Description: $shortDescriptionNews </p>
-                         <p>Time Uploaded: $timeuploaded </p>
-                       </div>        
-                 </div>";
-                 }
-             }
-             ?>
-            </div>
-            <!-- <div class="card">
-              <h3>Popular Post</h3>
-              <div class="fakeimg">Image</div><br>
-              <div class="fakeimg">Image</div><br>
-              <div class="fakeimg">Image</div>
-            </div>
-            <div class="card">
-              <h3>Follow Me</h3>
-              <p>Some text..</p>
-            </div> -->
           </div>
         </div>
     </div>

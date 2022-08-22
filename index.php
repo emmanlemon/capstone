@@ -96,7 +96,7 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color:green; z-index: 10;">
                         <a class="dropdown-item" href="news.php">News</a>
                         <a class="dropdown-item" href="achievement.php">Achievements</a>
-                        <a class="dropdown-item" href="upcoming_events.php">Upcoming Events</a>
+                        <a class="dropdown-item" href="upcoming_events .php">Upcoming Events</a>
                         </div>
                     </div>
                 </li>

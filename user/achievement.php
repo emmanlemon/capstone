@@ -23,7 +23,7 @@
         <img src="images/sepnas.jpg" alt="" style="width: 100%; height: 350px; margin-top: 1.5%;">
     <div class="container_post">
     <div class="header">
-  <h2>Announcements</h2>
+  <h2>Achievements</h2>
 </div>
     <div class="row">
   <div class="leftcolumn">
@@ -32,27 +32,26 @@
         include "db_conn.php";
 
          //Selecting the all post in achievement
-         $sql = "SELECT * FROM posts ORDER BY post_id desc";
+        $sql = "SELECT * FROM achievement ORDER BY achievement_id desc";
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
           // output data of each row
           while ($row = mysqli_fetch_assoc($result)) {
-            $post_id = $row["post_id"];
-            $timeuploaded = $row["timeuploaded"];
-            $thumbnail = $row["thumbnail"];
-            $fullImage = $row["fimage"];
-            $smallImage =  $row["simage"];
-            $header = $row["header"];
-            $bigheader = $row["bigheader"];
-            $short_description = $row["short_description"];
-            $description = $row["description"];
-            $post_text = $row["post_text"];
+              $achievement_id = $row["achievement_id"];
+              $title= $row["title"];
+              $thumbnailImage = $row["thumbnail_image"];
+              $fullIimage = $row["full_image"];
+              $headerAchievement = $row["header"];
+              $shortDescriptionAchievement = $row["short_description"];
+              $content = $row["content"];
+              $postText = $row["post_text"];
 
               echo "
-              <img src='../admin/images/announcement/$thumbnail'>
-              <h2>$header</h2>
-              <p>$short_description</p>
-              <a href=\"announcement_show.php?post_id=$post_id\">See more >></a>
+              <img src='../admin/images/achievement/$thumbnailImage'>
+              <h2>$title</h2>
+              <p>$headerAchievement</p>
+              <p>$shortDescriptionAchievement</p>
+              <a href=\"#\">See More >></a>
               ";
           }
         }

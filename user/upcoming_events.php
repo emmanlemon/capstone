@@ -16,14 +16,14 @@
 			<?php
                 include "molecule/header.php";
                 include "loadscreen.php";
-				        include "../disablerightclick.php";
+				    include "disablerightclick.php";
 			?>
 		</head>
         <body>
         <img src="images/sepnas.jpg" alt="" style="width: 100%; height: 350px; margin-top: 1.5%;">
     <div class="container_post">
     <div class="header">
-  <h2>Announcements</h2>
+  <h2>Upcoming Events</h2>
 </div>
     <div class="row">
   <div class="leftcolumn">
@@ -32,31 +32,28 @@
         include "db_conn.php";
 
          //Selecting the all post in achievement
-         $sql = "SELECT * FROM posts ORDER BY post_id desc";
+        $sql = "SELECT * FROM upcoming_events ORDER BY event_id desc";
         $result = mysqli_query($db, $sql);
         if (mysqli_num_rows($result) > 0) {
           // output data of each row
           while ($row = mysqli_fetch_assoc($result)) {
-            $post_id = $row["post_id"];
-            $timeuploaded = $row["timeuploaded"];
-            $thumbnail = $row["thumbnail"];
-            $fullImage = $row["fimage"];
-            $smallImage =  $row["simage"];
-            $header = $row["header"];
-            $bigheader = $row["bigheader"];
-            $short_description = $row["short_description"];
-            $description = $row["description"];
-            $post_text = $row["post_text"];
+            $event_id = $row["event_id"];
+            $titleEvents = $row["title"];
+            $thumbnailImageEvents = $row["thumbnail_image"];
+            $fullIImageEvents = $row["full_image"];
+            $headerEvents = $row["header"];
+            $shortDescriptionEvents = $row["short_description"];
+            $contentEvents = $row["content"];
+            $dateEvent = $row["date"];
 
               echo "
-              <img src='../admin/images/announcement/$thumbnail'>
-              <h2>$header</h2>
-              <p>$short_description</p>
-              <a href=\"announcement_show.php?post_id=$post_id\">See more >></a>
+              <img src='../admin/images/events/$thumbnailImageEvents'>
+              <h2>$titleEvents </h2>
+              <p>$shortDescriptionEvents</p>
+              <a href=\"announcement_id=\">See More >></a>
               ";
           }
         }
-
         ?>
     </div>
   </div>
@@ -125,13 +122,15 @@
                      $shortDescriptionNews = $row["short_description"];
                      $timeuploaded =  $row["timestamp"];
                      $contentNews = $row["content"];
+                     $date = date_create($timeuploaded);
+                      $dateLayout = date_format($date,"h:i:s d/m/Y");
 
                      echo "<div class=\"data_feedback\"> 
                      <img src='../admin/images/news/$thumbnailImageNews'>
                        <div>
                          <p>Title: $titleNews</p>
                          <p>Description: $shortDescriptionNews </p>
-                         <p>Time Uploaded: $timeuploaded </p>
+                         <p>Time Uploaded: $dateLayout </p>
                        </div>        
                  </div>";
                  }

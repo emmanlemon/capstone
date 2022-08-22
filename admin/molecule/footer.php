@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="css/footer.css">
 
-<link rel="stylesheet" href="css/footer.css">
 
 <footer class="page-footer font-small blue pt-4">
      <!-- Footer -->
